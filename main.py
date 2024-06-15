@@ -3,6 +3,10 @@ from enum import Enum
 from typing import List, Optional
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
+import sys, os
+sys.path.insert(1, os.path.join(sys.path[0], 'src'))
+from src import start
+
 
 app = FastAPI(
     title="Test App"
