@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy import create_engine, Column, Integer, String, text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session, sessionmaker, DeclarativeBase
-from config import settings
+from src.env_settings import settings
 
 sync_engine = create_engine(
         url=settings.DATABASE_URL_psycopg,

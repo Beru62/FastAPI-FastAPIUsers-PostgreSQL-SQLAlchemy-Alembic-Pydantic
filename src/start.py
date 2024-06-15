@@ -1,4 +1,4 @@
-from config import settings
+from src.env_settings import settings
 from orm import AsyncORM
 import asyncio
 
