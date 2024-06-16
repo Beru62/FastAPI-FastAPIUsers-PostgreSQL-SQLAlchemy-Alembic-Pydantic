@@ -1,6 +1,8 @@
 import asyncio
-from typing import Annotated
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
+from typing import Annotated, AsyncGenerator
+from fastapi import Depends
+from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 from sqlalchemy import create_engine, Column, Integer, String, text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session, sessionmaker, DeclarativeBase
@@ -22,6 +24,3 @@ async_engine = create_async_engine(
 
 session_factory = sessionmaker(sync_engine)
 async_session_factory = async_sessionmaker(async_engine)
-
-class Base(DeclarativeBase):
-    pass

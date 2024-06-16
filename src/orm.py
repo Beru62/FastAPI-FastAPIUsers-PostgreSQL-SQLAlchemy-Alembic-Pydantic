@@ -1,7 +1,7 @@
 from sqlalchemy import select, text, insert, func, cast
 import asyncio
-from src.database import sync_engine, async_engine, session_factory, async_session_factory, Base
-from db_models import Roles, Users
+from engines import sync_engine, async_engine, session_factory, async_session_factory
+from db_models import Role, User, Base
 
 class SyncORM():
     def __init__(self):
@@ -44,7 +44,7 @@ class AsyncORM():
     @staticmethod
     async def insert_data_into_Users():
         async with async_session_factory() as session:
-            item1 = Roles()
+            item1 = Role()
             session.add_all([item1])
             await session.commit()
 
