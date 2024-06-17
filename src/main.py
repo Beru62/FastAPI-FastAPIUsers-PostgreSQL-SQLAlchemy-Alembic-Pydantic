@@ -4,13 +4,11 @@ from typing import List, Optional
 from fastapi import Depends, FastAPI
 import fastapi_users
 from pydantic import BaseModel, Field
-import sys, os
 
-# sys.path.insert(1, os.path.join(sys.path[0], 'auth'))
 from src.auth.manager import get_user_manager
 from src.database import User
 from src.auth.schemas import UserCreate, UserRead
-from src.auth.auth import auth_backend
+from src.auth.config import auth_backend
 from fastapi_users import FastAPIUsers
 
 
@@ -44,3 +42,7 @@ def protected_route(user: User = Depends(current_user)):
 @app.get("/unprotected-route")
 def protected_route():
     return f"Hello, anonym"
+
+@app.post("/plus/{num1}/{num2}")
+def adding_numbers(num1: int, num2: int):
+    return f"Ответ = {num1 + num2}"
