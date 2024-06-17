@@ -2,11 +2,29 @@ from datetime import datetime, UTC
 from typing import AsyncGenerator
 from fastapi import Depends
 from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable, SQLAlchemyUserDatabase
-from sqlalchemy import Boolean, MetaData, Table, Column, Integer, String, TIMESTAMP, ForeignKey, JSON, text
+from sqlalchemy import Boolean, MetaData, Table, Column, Integer, String, TIMESTAMP, ForeignKey, JSON, text, create_engine
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from src.engines import async_session_factory
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
+from src.config import settings
+
+sync_engine = create_engine(
+        url=settings.DATABASE_URL_psycopg,
+        echo=True,
+        # pool_size=5,
+        # max_overflow=10
+    )
+
+async_engine = create_async_engine(
+    url=settings.DATABASE_URL_asyncpg,
+    echo=True,
+    # pool_size=5,
+    # max_overflow=10,
+)
+
+session_factory = sessionmaker(sync_engine)
+async_session_factory = async_sessionmaker(async_engine)
 
 metadata = MetaData()
 

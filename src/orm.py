@@ -1,7 +1,8 @@
 from sqlalchemy import select, text, insert, func, cast
 import asyncio
-from engines import sync_engine, async_engine, session_factory, async_session_factory
-from db_models import Role, User, Base
+from database import sync_engine, async_engine, session_factory, async_session_factory
+from database import Role, User, Base
+from src import config
 
 class SyncORM():
     def __init__(self):

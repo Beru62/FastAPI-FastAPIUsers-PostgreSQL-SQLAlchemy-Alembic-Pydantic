@@ -3,7 +3,7 @@ from typing import Optional
 from fastapi import Depends, Request, exceptions
 from fastapi_users import BaseUserManager, IntegerIDMixin, UUIDIDMixin, models, schemas
 
-from src.db_models import User, get_user_db
+from src.database import User, get_user_db
 
 SECRET = "SECRET"
 

@@ -6,12 +6,11 @@ import fastapi_users
 from pydantic import BaseModel, Field
 import sys, os
 
-from auth.manager import get_user_manager
-sys.path.insert(1, os.path.join(sys.path[0], 'src'))
-from src.db_models import User
-from auth.schemas import UserCreate, UserRead
-from src import start
-from auth.auth import auth_backend
+# sys.path.insert(1, os.path.join(sys.path[0], 'auth'))
+from src.auth.manager import get_user_manager
+from src.database import User
+from src.auth.schemas import UserCreate, UserRead
+from src.auth.auth import auth_backend
 from fastapi_users import FastAPIUsers
 
 
